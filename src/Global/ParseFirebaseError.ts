@@ -11,10 +11,14 @@ export const ParseFirebaseError = (Error: string) => {
 
     case "auth/too-many-requests":
       return "too many request, try again later.";
-      
+
     case "auth/invalid-email":
       return "Invalid Email.";
 
+    case "auth/invalid-login-credentials":
+      return "Wrong password";
+
+      
     default:
       return Error;
   }

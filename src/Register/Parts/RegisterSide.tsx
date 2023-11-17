@@ -220,7 +220,16 @@ export default function RegisterSide() {
           >
             {ErrorState}
           </span>
-          <button className="RegisterButton" onClick={() => HandleData()}>
+          <button
+            className="RegisterButton"
+            style={{
+              backgroundColor:
+                Name && Email && Password && Agree ? "#1565d8" : "grey",
+            }}
+            onClick={() => {
+              HandleData();
+            }}
+          >
             {Loading ? (
               <>
                 <LoadingScreen />

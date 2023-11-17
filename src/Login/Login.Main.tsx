@@ -1,5 +1,11 @@
-import React from "react";
-
+import "./Login.Style.css";
+import LoginImageSide from "./Parts/LoginImageSide";
+import LoginSide from "./Parts/LoginSide";
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <div className="LoginContainer">
+      <LoginSide />
+      <LoginImageSide />
+    </div>
+  );
 }
