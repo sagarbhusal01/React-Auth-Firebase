@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { auth } from "../../FirebaseConfig";
 import { ParseFirebaseError } from "../../Global/ParseFirebaseError";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingScreen from "../../Components/LoadingScreen";
 
 export default function LoginSide() {
   // ==========================================================
@@ -22,13 +23,15 @@ export default function LoginSide() {
     }
     setLoading(true);
     signInWithEmailAndPassword(auth, Email, Password)
-      .then(() => {
-        navigate("/Home");
+      .then((result) => {
+        if (result.user.emailVerified) {
+          navigate("/Home");
+        }
         setLoading(false);
+        setErrorState("you must verify your Email first...");
       })
       .catch((e) => {
         setLoading(false);
-
         setErrorState(ParseFirebaseError(e.code));
       });
   };
@@ -36,19 +39,19 @@ export default function LoginSide() {
   // ==========================================================
   // ==========================================================
   const navigate = useNavigate();
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate("/Home");
-      }
-    });
-  });
+
   // ==========================================================
   // ==========================================================
   // ==========================================================
   useEffect(() => {
     setErrorState("");
   }, [Email, Password]);
+
+  useEffect(() => {
+    if (auth.currentUser && auth.currentUser.emailVerified) {
+      navigate("/Home");
+    }
+  }, []);
 
   // ==========================================================
   // ==========================================================
@@ -109,6 +112,7 @@ export default function LoginSide() {
           >
             {ErrorState}
           </span>
+          {Loading ? <LoadingScreen /> : null}
           <button
             className="LoginButton"
             style={{

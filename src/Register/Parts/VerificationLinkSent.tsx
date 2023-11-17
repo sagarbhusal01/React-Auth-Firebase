@@ -1,7 +1,9 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useEffect } from "react";
 import EMAILSENT from "../../assets/EmailSent.json";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../FirebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 export default function VerificationLinkSent(props: any) {
   // ============================================================
   // ============================================================
@@ -17,7 +19,6 @@ export default function VerificationLinkSent(props: any) {
   // ============================================================
   // ============================================================
   // ============================================================
-  
 
   return (
     <>
@@ -72,7 +73,7 @@ export default function VerificationLinkSent(props: any) {
               }}
             >
               <button
-              onClick={()=>props.ResendEmailVerificationLink()}
+                onClick={() => props.ResendEmailVerificationLink()}
                 style={{
                   height: 40,
                   width: 150,

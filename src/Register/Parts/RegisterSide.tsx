@@ -245,6 +245,7 @@ export default function RegisterSide() {
             Trigger={PopupTrigger}
             ResendEmailVerificationLink={ResendEmailVerificationLink}
           />
+            <ToastContainer  />
           <Link
             to={"/Login"}
             style={{ alignSelf: "center", marginTop: 10, color: "#1565D8" }}
@@ -252,7 +253,6 @@ export default function RegisterSide() {
             Already have an account?
           </Link>
         </div>
-        <ToastContainer style={{ position: "absolute", bottom: 0, right: 0 }} />
       </div>
     </>
   );

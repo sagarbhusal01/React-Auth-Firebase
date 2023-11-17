@@ -2,7 +2,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useLayoutEffect } from "react";
 import { auth } from "../FirebaseConfig";
 import { useNavigate } from "react-router-dom";
-
+import "./Home.Style.css";
 export default function Home() {
   // ============================================
   // ============================================
@@ -31,6 +31,7 @@ export default function Home() {
 
   return (
     <div className="HomeContainer">
+      <span>{auth.currentUser?.displayName}</span>
       <button onClick={() => Signout()}>Signout</button>
     </div>
   );
