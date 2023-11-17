@@ -48,7 +48,7 @@ export default function LoginSide() {
   }, [Email, Password]);
 
   useEffect(() => {
-    if (auth.currentUser && auth.currentUser.emailVerified) {
+    if (auth.currentUser?.emailVerified) {
       navigate("/Home");
     }
   }, []);
